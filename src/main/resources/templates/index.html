@@ -8,7 +8,7 @@
 
 <div th:each="document : ${documents}">
     <a th:href="@{/documents/{id}(id=${document.getId()})}"
-       th:text="${document.getTitle() + ', ' + document.getYear()}">user</a>
+       th:text="${document.getTitle() + ', год документа: ' + document.getYear()}">user</a>
 </div>
 
 <br/>
