@@ -17,9 +17,9 @@ public class Village {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToMany(mappedBy = "villages")
+    @ManyToMany(mappedBy = "villages", cascade = {CascadeType.ALL})
     private List<Family> families;
-    @ManyToMany(mappedBy = "villages")
+    @ManyToMany(mappedBy = "villages", cascade = {CascadeType.ALL})
     private List<Person> persons;
     @ManyToMany
     @JoinTable(

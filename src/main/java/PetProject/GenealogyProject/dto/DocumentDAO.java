@@ -10,8 +10,7 @@ import java.util.List;
 @Component
 public class DocumentDAO {
 
-
-        private static int DOCUMENT_COUNT;
+//        private static int DOCUMENT_COUNT;
         private DocumentService documents;
 
 
