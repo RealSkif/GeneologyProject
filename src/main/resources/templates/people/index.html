@@ -6,15 +6,17 @@
 </head>
 <body>
 
-<div th:each="document : ${documents}">
-    <a th:href="@{/documents/{id}(id=${document.getId()})}"
-       th:text="${document.getTitle() + ', год документа: ' + document.getYear()}">user</a>
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}"
+       th:text="${person.getLastName() + ' ' +person.getFirstName()+ ' ' + person.getMiddleName()
+        +', возраст: '+ person.getAge() +
+        ', социальный статус: '+ person.getSocialStatus()}">user</a>
 </div>
 
 <br/>
 <hr/>
 
-<a href="/documents/new">Create new document</a>
+<a href="/person/new">Create new person</a>
 
 </body>
 </html>

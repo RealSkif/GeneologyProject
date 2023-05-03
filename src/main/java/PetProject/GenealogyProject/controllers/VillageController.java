@@ -30,7 +30,7 @@ public class VillageController {
     }
 
     @GetMapping("/new")
-    public String newDocument(@ModelAttribute("village") Village village) {
+    public String newVillage(@ModelAttribute("village") Village village) {
         return "villages/new";
     }
 

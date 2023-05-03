@@ -44,9 +44,9 @@ public class Person {
     @Column(name = "age")
     private int age;
     @Column(name = "mother")
-    private int mother;
+    private Integer mother;
     @Column(name = "father")
-    private int father;
+    private Integer father;
     @Column(name = "socialstatus")
     private String socialStatus;
 

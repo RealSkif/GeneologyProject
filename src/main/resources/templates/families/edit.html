@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update document</title>
+    <title>Update family</title>
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/families/{id}(id=${family.getId()})}" th:object="${family}">

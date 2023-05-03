@@ -5,13 +5,13 @@
     <title>Show</title>
 </head>
 <body>
-<p th:text="${documents.getTitle() + ', ' + documents.getYear()}">VALUE</p>
-<p th:text="${'Type: ' + documents.getDocumentType()}">VALUE</p>
-<p th:text="${documents.getId()}">VALUE</p>
+<p th:text="${person.getLastName() + ' ' +person.getFirstName()+ ' ' + person.getMiddleName()}">VALUE</p>
+<p th:text="${'Возраст: '+ person.getAge()}">VALUE</p>
+<p th:text="${'Cоциальный статус: '+ person.getSocialStatus()}">VALUE</p>
 
-<a th:href="@{/documents/{id}/edit(id=${documents.getId()})}">Edit</a>
+<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
 
-<form th:method="DELETE" th:action="@{/documents/{id}(id=${documents.getId()})}">
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 </body>

@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/people")
 public class PersonController {
-
-
     private final PersonService personService;
-
     @Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
@@ -22,7 +19,7 @@ public class PersonController {
 
     @GetMapping("/index")
     public String index(Model model) {
-        model.addAttribute("person", personService.findAll());
+        model.addAttribute("people", personService.findAll());
         return "people/index";
     }
 
@@ -33,7 +30,7 @@ public class PersonController {
     }
 
     @GetMapping("/new")
-    public String newDocument(@ModelAttribute("person") Person person) {
+    public String newPerson(@ModelAttribute("person") Person person) {
         return "people/new";
     }
 

@@ -7,6 +7,9 @@
 <body>
 <p th:text="${'Last name: ' + family.getLastName()}">VALUE</p>
 
+<a th:href="@{/families/{id}/edit(id=${family.getId()})}">Edit</a>
+<a href="/people/index">Show all members</a>  <br/>
+
 <form th:method="DELETE" th:action="@{/families/{id}(id=${family.getId()})}">
     <input type="submit" value="Delete"/>
 </form>

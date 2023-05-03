@@ -2,22 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update document</title>
+    <title>Update person</title>
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
-    <label for="title">Enter title: </label>
-    <input type="text" th:field="*{title}" id="title"/>
-    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</div>
+    <label for="lastName">Enter last name: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</div>
+    <br/>
+    <label for="firstName">Enter first name: </label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</div>
+    <br/>
+    <label for="middleName">Enter middle name: </label>
+    <input type="text" th:field="*{middleName}" id="middleName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">middle Name Error</div>
+    <br/>
 
+    <label for="age">Enter age: </label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>
     <br/>
-    <label for="year">Enter year: </label>
-    <input type="text" th:field="*{year}" id="year"/>
-    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error</div>
-    <br/>
-    <label for="documentType">Enter type: </label>
-    <input type="text" th:field="*{documentType}" id="documentType"/>
-    <div style="color:red" th:if="${#fields.hasErrors('documentType')}" th:errors="*{documentType}">Document Type Error</div>
+    <label for="socialStatus">Enter social status: </label>
+    <input type="text" th:field="*{socialStatus}" id="socialStatus"/>
+    <div style="color:red" th:if="${#fields.hasErrors('socialStatus')}" th:errors="*{socialStatus}">Social status Error</div>
     <br/>
     <input type="submit" value="Update!"/>
 </form>

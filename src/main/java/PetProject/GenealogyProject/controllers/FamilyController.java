@@ -31,7 +31,7 @@ public class FamilyController {
     }
 
     @GetMapping("/new")
-    public String newDocument(@ModelAttribute("family") Family family) {
+    public String mewFamily(@ModelAttribute("family") Family family) {
         return "families/new";
     }
 
