@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<div th:each="village : ${village}">
+    <a th:href="@{/village/{id}(id=${village.getId()})}"
+       th:text="${village.getName()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/villages/new">Create new village</a>
+
+</body>
+</html>

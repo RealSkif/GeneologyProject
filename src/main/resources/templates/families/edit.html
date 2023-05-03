@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update document</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/families/{id}(id=${family.getId()})}" th:object="${family}">
+    <label for="lastName">Enter lastname: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Title Error</div>
+
+    <input type="submit" value="Update!"/>
+</form>
+
+</body>
+</html>

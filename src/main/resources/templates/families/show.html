@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+<p th:text="${'Last name: ' + family.getLastName()}">VALUE</p>
+
+<form th:method="DELETE" th:action="@{/families/{id}(id=${family.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>

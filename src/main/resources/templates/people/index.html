@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+<div th:each="document : ${documents}">
+    <a th:href="@{/documents/{id}(id=${document.getId()})}"
+       th:text="${document.getTitle() + ', год документа: ' + document.getYear()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/documents/new">Create new document</a>
+
+</body>
+</html>

@@ -4,11 +4,10 @@ import PetProject.GenealogyProject.models.Document;
 import PetProject.GenealogyProject.services.DocumentService;
 import org.springframework.stereotype.Component;
 
-import javax.print.Doc;
 import java.util.List;
 
 @Component
-public class DocumentDAO {
+public class DocumentDTO {
 
 //        private static int DOCUMENT_COUNT;
         private DocumentService documents;
