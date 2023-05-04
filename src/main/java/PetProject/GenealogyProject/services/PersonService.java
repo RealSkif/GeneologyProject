@@ -1,5 +1,6 @@
 package PetProject.GenealogyProject.services;
 
+import PetProject.GenealogyProject.models.Family;
 import PetProject.GenealogyProject.models.Person;
 import PetProject.GenealogyProject.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class PersonService {
 
     public List<Person> findAll() {
         return personRepository.findAll();
+    }
+    public List<Person> findByOwner(Family owner) {
+        return personRepository.findByOwner(owner);
     }
 
     public Person findOne(int id) {

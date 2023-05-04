@@ -2,6 +2,7 @@ package PetProject.GenealogyProject.controllers;
 
 import PetProject.GenealogyProject.models.Family;
 import PetProject.GenealogyProject.services.FamilyService;
+import PetProject.GenealogyProject.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class FamilyController {
 
     private final FamilyService familyService;
+    private final PersonService personService;
 
     @Autowired
-    public FamilyController(FamilyService familyService) {
+    public FamilyController(FamilyService familyService, PersonService personService) {
         this.familyService = familyService;
+        this.personService = personService;
     }
 
     @GetMapping("/index")
@@ -28,6 +31,13 @@ public class FamilyController {
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("family", familyService.findOne(id));
         return "families/show";
+    }
+
+    @GetMapping("/{id}/members")
+    public String showFamilyMembers(@PathVariable("id") int id, Model model) {
+        Family owner = familyService.findOne(id);
+        model.addAttribute("members", personService.findByOwner(owner));
+        return "/families/members";
     }
 
     @GetMapping("/new")

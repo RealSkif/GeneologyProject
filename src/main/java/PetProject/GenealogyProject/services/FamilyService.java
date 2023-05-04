@@ -1,6 +1,7 @@
 package PetProject.GenealogyProject.services;
 
 import PetProject.GenealogyProject.models.Family;
+import PetProject.GenealogyProject.models.Village;
 import PetProject.GenealogyProject.repositories.FamilyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class FamilyService {
 
     public List<Family> findAll() {
         return familyRepository.findAll();
+    }
+    public List<Family> findByVillagesIn(List<Village>  village) {
+        return familyRepository.findByVillagesIn(village);
     }
 
     public Family findOne(int id) {

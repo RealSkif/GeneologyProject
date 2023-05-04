@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<div th:each="village : ${village}">
-    <a th:href="@{/village/{id}(id=${village.getId()})}"
+<div th:each="village : ${villages}">
+    <a th:href="@{/villages/{id}(id=${village.getId()})}"
        th:text="${village.getName()}">user</a>
 </div>
 
