@@ -5,7 +5,7 @@
     <title>Index</title>
 </head>
 <body>
-
+<div th:insert="fragments/header :: header"></div>
 <div th:each="village : ${villages}">
     <a th:href="@{/villages/{id}(id=${village.getId()})}"
        th:text="${village.getName()}">user</a>

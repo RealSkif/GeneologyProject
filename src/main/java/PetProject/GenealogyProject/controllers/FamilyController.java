@@ -21,7 +21,7 @@ public class FamilyController {
         this.personService = personService;
     }
 
-    @GetMapping("/index")
+    @GetMapping()
     public String index(Model model) {
         model.addAttribute("families", familyService.findAll());
         return "families/index";

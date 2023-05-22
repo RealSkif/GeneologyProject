@@ -18,7 +18,7 @@ public class DocumentController {
         this.documentService = documentService;
     }
 
-    @GetMapping("/index")
+    @GetMapping()
     public String index(Model model) {
         model.addAttribute("documents", documentService.findAll());
         return "documents/index";

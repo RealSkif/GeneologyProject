@@ -5,7 +5,7 @@
     <title>New person</title>
 </head>
 <body>
-
+<div th:insert="fragments/header :: header"></div>
 <form th:method="POST" th:action="@{/people}" th:object="${person}">
     <label for="lastName">Enter last name: </label>
     <input type="text" th:field="*{lastName}" id="lastName"/>

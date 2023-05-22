@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>header</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>   .logo {
+        width: 100px;
+        height: 100px;
+    }
+
+
+    .navbar {
+        background-color: #5b5e60;
+        color: #fff;
+        padding: 10px;
+    }
+
+    .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .navbar a {
+        color: #fff;
+        text-decoration: none;
+        padding: 5px;
+    }
+
+    .navbar a:hover {
+        background-color: #555;
+    }
+    </style>
 </head>
 <body>
+<header>
+    <a href="http://localhost:8080/home">
+        <img src="jetbrains://idea/navigate/reference?project=GeneologyProject&path=static/logo.png" alt="Logo" class="logo">
+    </a>
+    <nav  class="navbar">
+        <ul>
+            <li><a href="http://localhost:8080/documents" >Список документов</a></li>
+            <li><a href="http://localhost:8080/villages">Список населенных пунктов</a></li>
+            <li><a href="http://localhost:8080/families">Список семей</a></li>
+            <li><a href="http://localhost:8080/people">Список людей</a></li>
+        </ul>
+    </nav>
+</header>
 
+<!-- Rest of your HTML content goes here -->
 </body>
 </html>

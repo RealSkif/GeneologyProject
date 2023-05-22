@@ -1,6 +1,7 @@
 package PetProject.GenealogyProject.controllers;
 
 import PetProject.GenealogyProject.models.Village;
+import PetProject.GenealogyProject.services.DocumentService;
 import PetProject.GenealogyProject.services.FamilyService;
 import PetProject.GenealogyProject.services.VillageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,16 @@ public class VillageController {
 
     private final VillageService villageService;
     private final FamilyService familyService;
+    private final DocumentService documentService;
 
     @Autowired
-    public VillageController(VillageService villageService, FamilyService familyService) {
+    public VillageController(VillageService villageService, FamilyService familyService, DocumentService documentService) {
         this.villageService = villageService;
         this.familyService = familyService;
+        this.documentService = documentService;
     }
 
-    @GetMapping("/index")
+    @GetMapping()
     public String index(Model model) {
         model.addAttribute("villages", villageService.findAll());
         return "villages/index";
@@ -39,6 +42,12 @@ public class VillageController {
         List<Village> village = List.of(villageService.findOne(id));
         model.addAttribute("families", familyService.findByVillagesIn(village));
         return "villages/families";
+    }
+    @GetMapping("/{id}/documents")
+    public String showDocuments(@PathVariable("id") int id, Model model) {
+        List<Village> village = List.of(villageService.findOne(id));
+        model.addAttribute("documents", documentService.findByVillagesIn(village));
+        return "villages/documents";
     }
 
     @GetMapping("/new")

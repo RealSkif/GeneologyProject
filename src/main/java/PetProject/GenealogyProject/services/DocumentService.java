@@ -1,6 +1,8 @@
 package PetProject.GenealogyProject.services;
 
 import PetProject.GenealogyProject.models.Document;
+import PetProject.GenealogyProject.models.Person;
+import PetProject.GenealogyProject.models.Village;
 import PetProject.GenealogyProject.repositories.DocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,4 +47,10 @@ public class DocumentService {
         documentRepository.deleteById(id);
     }
 
+    public List<Document> findByVillagesIn(List<Village> village) {
+        return documentRepository.findByVillagesIn(village);
+    }
+    public List<Document> findByPersonsIn(List<Person> person) {
+        return documentRepository.findByPersonsIn(person);
+    }
 }

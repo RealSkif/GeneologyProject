@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Integer> {
     List<Person> findByOwner(Family owner);
+    List<Person> findPersonByFatherOrMother(int motherId, int fatherId);
+
 }

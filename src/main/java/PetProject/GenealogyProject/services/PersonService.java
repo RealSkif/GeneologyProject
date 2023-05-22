@@ -32,6 +32,9 @@ public class PersonService {
         Optional<Person> foundPerson = personRepository.findById(id);
         return foundPerson.orElse(null);
     }
+   public List<Person> findChildren(int motherId, int fatherId){
+       return personRepository.findPersonByFatherOrMother(fatherId, motherId);
+   }
 
     @Transactional
     public void save(Person person) {

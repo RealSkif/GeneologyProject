@@ -5,7 +5,7 @@
     <title>New person</title>
 </head>
 <body>
-
+<div th:insert="fragments/header :: header"></div>
 <form th:method="POST" th:action="@{/villages}" th:object="${village}">
     <label for="name">Enter name of village: </label>
     <input type="text" th:field="*{name}" id="name"/>

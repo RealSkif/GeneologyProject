@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="/css/style.css">
     <meta charset="UTF-8">
     <title>Index</title>
 </head>
 <body>
-
+<div th:insert="fragments/header :: header"></div>
 <div th:each="family : ${families}">
-    <a th:href="@{/families/{id}(id=${family.getId()})}"
-       th:text="${family.getLastName()}">user</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Название населенного пункта</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row"><a th:href="@{/families/{id}(id=${family.getId()})}"
+                                th:text="${family.getLastName()}">user</a>
+            <td th:text="${family.getLastName()}">user</td>
+        </tbody>
+    </table>
+
 </div>
 
 <br/>

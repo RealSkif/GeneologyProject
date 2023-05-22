@@ -6,9 +6,9 @@
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
-<div th:each="family : ${families}">
-  <a th:href="@{/families/{id}(id=${family.getId()})}"
-     th:text="${family.getLastName() }">user</a>
+<div th:each="village : ${villages}">
+  <a th:href="@{/villages/{id}(id=${village.getId()})}"
+     th:text="${village.getName() }">user</a>
 </div>
 
 </body>
