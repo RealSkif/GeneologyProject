@@ -2,33 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New person</title>
+    <title>Новый человек</title>
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
 <form th:method="POST" th:action="@{/people}" th:object="${person}">
-    <label for="lastName">Enter last name: </label>
+    <label for="lastName">Введите фамилию: </label>
     <input type="text" th:field="*{lastName}" id="lastName"/>
     <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</div>
     <br/>
-    <label for="firstName">Enter first name: </label>
+    <label for="firstName">Введите имя: </label>
     <input type="text" th:field="*{firstName}" id="firstName"/>
     <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</div>
     <br/>
-    <label for="middleName">Enter middle name: </label>
+    <label for="middleName">Введите отчество: </label>
     <input type="text" th:field="*{middleName}" id="middleName"/>
     <div style="color:red" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">middle Name Error</div>
     <br/>
 
-    <label for="age">Enter age: </label>
+    <label for="age">Введите возраст: </label>
     <input type="text" th:field="*{age}" id="age"/>
     <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>
     <br/>
-    <label for="socialStatus">Enter social status: </label>
+    <label for="socialStatus">Введите социальный статус: </label>
     <input type="text" th:field="*{socialStatus}" id="socialStatus"/>
     <div style="color:red" th:if="${#fields.hasErrors('socialStatus')}" th:errors="*{socialStatus}">Social status Error</div>
     <br/>
-    <input type="submit" value="Create!"/>
+    <input type="submit" value="Создать"/>
 </form>
 
 </body>

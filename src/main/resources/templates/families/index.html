@@ -9,16 +9,12 @@
 <div th:insert="fragments/header :: header"></div>
 <div th:each="family : ${families}">
     <table>
-        <thead>
-        <tr>
-            <th>Название населенного пункта</th>
-        </tr>
-        </thead>
+
         <tbody>
         <tr>
             <th scope="row"><a th:href="@{/families/{id}(id=${family.getId()})}"
                                 th:text="${family.getLastName()}">user</a>
-            <td th:text="${family.getLastName()}">user</td>
+
         </tbody>
     </table>
 
@@ -26,7 +22,7 @@
 
 <br/>
 <hr/>
-<a href="/families/new">Create new family</a>
+<a href="/families/new">Добавить новую фамилию</a>
 
 </body>
 </html>

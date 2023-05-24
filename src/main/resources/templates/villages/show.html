@@ -6,15 +6,16 @@
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
+
 <p th:text="${village.getName()}">VALUE</p>
 
-<a th:href="@{/villages/{id}/edit(id=${village.getId()})}">Edit</a><br/>
+<a th:href="@{/villages/{id}/edit(id=${village.getId()})}">Редактировать</a><br/>
 
 <a th:href="@{'/villages/' + ${village.getId()} + '/families' }">Список семей</a><br/>
 <a th:href="@{'/villages/' + ${village.getId()} + '/documents' }">Список документов</a><br/>
 
 <form th:method="DELETE" th:action="@{/villages/{id}(id=${village.getId()})}">
-    <input type="submit" value="Delete"/>
+    <input type="submit" value="Удалить"/>
 </form>
 </body>
 </html>

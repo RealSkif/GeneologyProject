@@ -48,7 +48,7 @@ public class FamilyController {
     @PostMapping()
     public String create(@ModelAttribute("family") Family family) {
         familyService.save(family);
-        return "redirect:/families/index";
+        return "redirect:/families";
     }
 
     @GetMapping("/{id}/edit")
@@ -60,12 +60,12 @@ public class FamilyController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("family") Family family, @PathVariable("id") int id) {
         familyService.update(id, family);
-        return "redirect:/families/index";
+        return "redirect:/families";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         familyService.delete(id);
-        return "redirect:/villages/index";
+        return "redirect:/families";
     }
 }

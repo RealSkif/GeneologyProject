@@ -1,5 +1,6 @@
 package PetProject.GenealogyProject.controllers;
 
+import PetProject.GenealogyProject.models.Document;
 import PetProject.GenealogyProject.models.Village;
 import PetProject.GenealogyProject.services.DocumentService;
 import PetProject.GenealogyProject.services.FamilyService;
@@ -35,6 +36,7 @@ public class VillageController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("village", villageService.findOne(id));
+
         return "villages/show";
     }
     @GetMapping("/{id}/families")
@@ -49,17 +51,26 @@ public class VillageController {
         model.addAttribute("documents", documentService.findByVillagesIn(village));
         return "villages/documents";
     }
-
     @GetMapping("/new")
-    public String newVillage(@ModelAttribute("village") Village village) {
+    public String newVillage(Model model) {
+        Village village = new Village();
+        List<Document> documents = documentService.findAll();
+        model.addAttribute("village", village);
+        model.addAttribute("docs", documents);
         return "villages/new";
     }
 
     @PostMapping()
     public String create(@ModelAttribute("village") Village village) {
+//        List<Document> selectedDocuments = village.getSelectedDocuments();
+        // Perform any necessary operations with the selected documents
+        // For example, you can associate the documents with the village entity
+
         villageService.save(village);
-        return "redirect:/villages/index";
+        return "redirect:/villages";
     }
+
+
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
@@ -70,13 +81,13 @@ public class VillageController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("village") Village village, @PathVariable("id") int id) {
         villageService.update(id, village);
-        return "redirect:/villages/index";
+        return "redirect:/villages";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         villageService.delete(id);
-        return "redirect:/villages/index";
+        return "redirect:/villages";
     }
 }
 

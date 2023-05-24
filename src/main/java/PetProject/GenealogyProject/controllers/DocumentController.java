@@ -38,7 +38,7 @@ public class DocumentController {
     @PostMapping()
     public String create(@ModelAttribute("document") Document document) {
         documentService.save(document);
-        return "redirect:/documents/index";
+        return "redirect:/documents";
     }
 
     @GetMapping("/{id}/edit")
@@ -50,12 +50,12 @@ public class DocumentController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("document") Document document, @PathVariable("id") int id) {
         documentService.update(id, document);
-        return "redirect:/documents/index";
+        return "redirect:/documents";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         documentService.delete(id);
-        return "redirect:/documents/index";
+        return "redirect:/documents";
     }
 }

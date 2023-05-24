@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update person</title>
+    <title>Редактировать данные человека</title>
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
@@ -28,7 +28,7 @@
     <input type="text" th:field="*{socialStatus}" id="socialStatus"/>
     <div style="color:red" th:if="${#fields.hasErrors('socialStatus')}" th:errors="*{socialStatus}">Social status Error</div>
     <br/>
-    <input type="submit" value="Update!"/>
+    <input type="submit" value="Применить"/>
 </form>
 
 </body>

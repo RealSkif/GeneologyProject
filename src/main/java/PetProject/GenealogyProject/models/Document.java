@@ -27,6 +27,7 @@ public class Document {
     private String documentType;
     @Column(name = "year")
     private int year;
+
     public void removePerson(Person person){
         this.persons.remove(person);
         person.getDocuments().remove(this);

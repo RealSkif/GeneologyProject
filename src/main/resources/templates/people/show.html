@@ -29,7 +29,7 @@
     <a th:href="@{/people/{id}(id=${person.getId()})}"
        th:text="${person.getLastName() + ' ' +person.getFirstName()+ ' ' + person.getMiddleName()}">user</a>
 </div><br/><br/>
-<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Редактрровать данные человака</a><br/>
+<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Редактировать данные человека</a><br/>
 
 
 <a th:href="@{'/people/' + ${person.getId()} + '/documents' }">Список документов</a><br/>
@@ -37,7 +37,7 @@
 
 
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
-    <input type="submit" value="Delete"/>
+    <input type="submit" value="Удалить"/>
 </form>
 </body>
 </html>
