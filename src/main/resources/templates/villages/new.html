@@ -6,15 +6,16 @@
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
+
 <form th:method="POST" th:action="@{/villages}" th:object="${village}">
     <label for="name">Введите название населенного пункта: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Title Error</div>
     <br>
     <span>Выберите документы, в которых упоминается данный населенный пункт: </span>
-    <label for="selectedDocuments">Выберите документы из списка: </label>
-    <select th:object="${docs} " id="selectedDocuments">
-        <option th:each="doc : ${docs}"  th:text="${doc.title}"></option>
+    <label for="documentIds">Выберите документы из списка: </label>
+    <select multiple="multiple" th:field="*{id}" id="documentIds">
+        <option th:each="doc : ${docs}" th:value="${doc.id}" th:text="${doc.title}"></option>
     </select>
     <br/>
     <input type="submit" value="Создать"/>

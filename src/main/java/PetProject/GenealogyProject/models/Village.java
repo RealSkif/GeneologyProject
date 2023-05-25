@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
+import javax.print.Doc;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -31,7 +33,16 @@ public class Village {
     private List<Document> documents;
     @Column(name = "name")
     private String name;
+    public void removeDocument(Document document){
+        this.documents.remove(document);
+        document.getVillages().remove(this);
+    }
 
+    public void addDocument(Document document){
+        if(this.documents == null) documents = new ArrayList<>();
+        this.documents.add(document);
+        document.getVillages().add(this);
+    }
 
 }
 

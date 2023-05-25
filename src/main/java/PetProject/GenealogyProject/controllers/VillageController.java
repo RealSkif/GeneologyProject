@@ -61,7 +61,10 @@ public class VillageController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("village") Village village) {
+    public String create(@ModelAttribute("village") Village village, @ModelAttribute("docs") Document doc) {
+        doc = documentService.findOne(doc.getId());
+        System.out.println(doc.getId() + " "+ doc.getTitle()) ;
+        village.setDocuments(List.of(doc));
 //        List<Document> selectedDocuments = village.getSelectedDocuments();
         // Perform any necessary operations with the selected documents
         // For example, you can associate the documents with the village entity
