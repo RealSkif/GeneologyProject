@@ -17,10 +17,8 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToMany(mappedBy = "documents", cascade = {CascadeType.ALL})
+    @ManyToMany(mappedBy = "documents", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Village> villages;
-    @ManyToMany(mappedBy = "documents", cascade = {CascadeType.ALL})
-    private List<Person> persons;
     @Column(name = "title")
     private String title;
     @Column(name = "documenttype")
@@ -28,15 +26,6 @@ public class Document {
     @Column(name = "year")
     private int year;
 
-    public void removePerson(Person person){
-        this.persons.remove(person);
-        person.getDocuments().remove(this);
-    }
-
-    public void addPerson(Person person){
-        this.persons.add(person);
-        person.getDocuments().add(this);
-    }
     public void removeVillage(Village village){
         this.villages.remove(village);
         village.getDocuments().remove(this);

@@ -19,11 +19,7 @@ public class Village {
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @ManyToMany(mappedBy = "villages", cascade = {CascadeType.ALL})
-    private List<Family> families;
-    @ManyToMany(mappedBy = "villages", cascade = {CascadeType.ALL})
-    private List<Person> persons;
+    private Integer id;
     @ManyToMany
     @JoinTable(
             name = "document_village",

@@ -1,7 +1,6 @@
 package PetProject.GenealogyProject.services;
 
 import PetProject.GenealogyProject.models.Document;
-import PetProject.GenealogyProject.models.Person;
 import PetProject.GenealogyProject.models.Village;
 import PetProject.GenealogyProject.repositories.VillageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +46,6 @@ public class VillageService {
         villageRepository.deleteById(id);
     }
 
-    public List<Village> findByPersonsIn(List<Person> person) {
-        return villageRepository.findByPersonsIn(person);
-    }
 }
 
 

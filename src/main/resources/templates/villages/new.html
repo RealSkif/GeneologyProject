@@ -14,8 +14,8 @@
     <br>
     <span>Выберите документы, в которых упоминается данный населенный пункт: </span>
     <label for="documentIds">Выберите документы из списка: </label>
-    <select multiple="multiple" th:field="*{id}" id="documentIds">
-        <option th:each="doc : ${docs}" th:value="${doc.id}" th:text="${doc.title}"></option>
+    <select th:object="${id}" multiple="multiple" th:field="*{add()}" id="documentIds">
+        <option th:each="doc : ${docs}" th:value="${doc.getId()}" th:text="${doc.title}"></option>
     </select>
     <br/>
     <input type="submit" value="Создать"/>
