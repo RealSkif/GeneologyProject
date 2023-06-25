@@ -17,9 +17,9 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToMany(mappedBy = "documents", cascade = {CascadeType.ALL})
+    @ManyToMany(mappedBy = "documents", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Village> villages;
-    @ManyToMany(mappedBy = "documents", cascade = {CascadeType.ALL})
+    @ManyToMany(mappedBy = "documents", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Person> persons;
     @Column(name = "title")
     private String title;

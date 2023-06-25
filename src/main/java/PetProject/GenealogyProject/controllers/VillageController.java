@@ -15,16 +15,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/villages")
 public class VillageController {
-
     private final VillageService villageService;
-    private final FamilyService familyService;
     private final DocumentService documentService;
+    private final FamilyService familyService;
 
     @Autowired
-    public VillageController(VillageService villageService, FamilyService familyService, DocumentService documentService) {
+    public VillageController(VillageService villageService, DocumentService documentService,
+                             FamilyService familyService) {
         this.villageService = villageService;
-        this.familyService = familyService;
         this.documentService = documentService;
+        this.familyService = familyService;
     }
 
     @GetMapping()
@@ -36,44 +36,36 @@ public class VillageController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("village", villageService.findOne(id));
-
         return "villages/show";
     }
+
     @GetMapping("/{id}/families")
     public String showFamilies(@PathVariable("id") int id, Model model) {
         List<Village> village = List.of(villageService.findOne(id));
         model.addAttribute("families", familyService.findByVillagesIn(village));
         return "villages/families";
     }
+
     @GetMapping("/{id}/documents")
     public String showDocuments(@PathVariable("id") int id, Model model) {
         List<Village> village = List.of(villageService.findOne(id));
         model.addAttribute("documents", documentService.findByVillagesIn(village));
         return "villages/documents";
     }
+
     @GetMapping("/new")
     public String newVillage(Model model) {
-        Village village = new Village();
         List<Document> documents = documentService.findAll();
-        model.addAttribute("village", village);
-        model.addAttribute("docs", documents);
+        model.addAttribute("village", new Village());
+        model.addAttribute("allDocuments", documents);
         return "villages/new";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("village") Village village, @ModelAttribute("docs") Document doc) {
-        doc = documentService.findOne(doc.getId());
-        System.out.println(doc.getId() + " "+ doc.getTitle()) ;
-        village.setDocuments(List.of(doc));
-//        List<Document> selectedDocuments = village.getSelectedDocuments();
-        // Perform any necessary operations with the selected documents
-        // For example, you can associate the documents with the village entity
-
+    public String saveVillage(@ModelAttribute("village") Village village) {
         villageService.save(village);
         return "redirect:/villages";
     }
-
-
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
@@ -93,4 +85,3 @@ public class VillageController {
         return "redirect:/villages";
     }
 }
-

@@ -24,6 +24,7 @@ public class Person {
             inverseJoinColumns = @JoinColumn(name = "document_id")
     )
     private List<Document> documents;
+
     @ManyToMany
     @JoinTable(
             name = "person_village",

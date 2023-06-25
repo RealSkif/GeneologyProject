@@ -19,11 +19,9 @@ public class Village {
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @ManyToMany(mappedBy = "villages", cascade = {CascadeType.ALL})
-    private List<Family> families;
-    @ManyToMany(mappedBy = "villages", cascade = {CascadeType.ALL})
-    private List<Person> persons;
+    private Integer id;
+    @Column(name = "name")
+    private String name;
     @ManyToMany
     @JoinTable(
             name = "document_village",
@@ -31,18 +29,20 @@ public class Village {
             inverseJoinColumns = @JoinColumn(name = "document_id")
     )
     private List<Document> documents;
-    @Column(name = "name")
-    private String name;
-    public void removeDocument(Document document){
+
+    @ManyToMany(mappedBy = "villages", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Family> families;
+    @ManyToMany(mappedBy = "villages", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Person> persons;
+
+    public void removeDocument(Document document) {
         this.documents.remove(document);
         document.getVillages().remove(this);
     }
 
-    public void addDocument(Document document){
-        if(this.documents == null) documents = new ArrayList<>();
+    public void addDocument(Document document) {
+        if (this.documents == null) documents = new ArrayList<>();
         this.documents.add(document);
         document.getVillages().add(this);
     }
-
 }
-
