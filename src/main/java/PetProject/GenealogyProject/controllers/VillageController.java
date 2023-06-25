@@ -37,7 +37,8 @@ public class VillageController {
 
         return "villages/show";
     }
-//    @GetMapping("/{id}/families")
+
+    //    @GetMapping("/{id}/families")
 //    public String showFamilies(@PathVariable("id") int id, Model model) {
 //        List<Village> village = List.of(villageService.findOne(id));
 //        model.addAttribute("families", familyService.findByVillagesIn(village));
@@ -49,34 +50,20 @@ public class VillageController {
         model.addAttribute("documents", documentService.findByVillagesIn(village));
         return "villages/documents";
     }
+
     @GetMapping("/new")
     public String newVillage(Model model) {
-        Village village = new Village();
         List<Document> documents = documentService.findAll();
-        ArrayList<Integer> ids = new ArrayList<>();
-        model.addAttribute("village", village);
-        model.addAttribute("docs", documents);
-        model.addAttribute("id", ids);
+        model.addAttribute("village", new Village());
+        model.addAttribute("allDocuments", documents);
         return "villages/new";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("village") Village village,
-                         @ModelAttribute("docs") Document doc,
-                         @ModelAttribute("id") ArrayList<Integer> ids) {
-        doc = documentService.findOne(doc.getId());
-        System.out.println(doc.getId() + " "+ doc.getTitle()) ;
-        village.setDocuments(List.of(doc));
-        village.setId(null);
-        System.out.println( village.getId());
-//        List<Document> selectedDocuments = village.getSelectedDocuments();
-        // Perform any necessary operations with the selected documents
-        // For example, you can associate the documents with the village entity
-
+    public String saveVillage(@ModelAttribute("village") Village village) {
         villageService.save(village);
         return "redirect:/villages";
     }
-
 
 
     @GetMapping("/{id}/edit")

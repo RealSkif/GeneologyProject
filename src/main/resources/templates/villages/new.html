@@ -10,13 +10,18 @@
 <form th:method="POST" th:action="@{/villages}" th:object="${village}">
     <label for="name">Введите название населенного пункта: </label>
     <input type="text" th:field="*{name}" id="name"/>
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Title Error</div>
-    <br>
-    <span>Выберите документы, в которых упоминается данный населенный пункт: </span>
-    <label for="documentIds">Выберите документы из списка: </label>
-    <select th:object="${id}" multiple="multiple" th:field="*{add()}" id="documentIds">
-        <option th:each="doc : ${docs}" th:value="${doc.getId()}" th:text="${doc.title}"></option>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Ошибка названия</div>
+
+        <label for="documents">Documents:</label>
+    <select id="documents" name="documents" multiple="multiple">
+        <option th:each="document : ${allDocuments}" th:value="${document.id}" th:text="${document.title}"></option>
+        <div style="color:red" th:if="${#fields.hasErrors('documents')}" th:errors="*{documents}">Необходимо указать документ</div>
+
     </select>
+
+
+    <br/>
+
     <br/>
     <input type="submit" value="Создать"/>
 </form>

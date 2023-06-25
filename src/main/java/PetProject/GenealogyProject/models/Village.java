@@ -20,6 +20,8 @@ public class Village {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "name")
+    private String name;
     @ManyToMany
     @JoinTable(
             name = "document_village",
@@ -27,8 +29,7 @@ public class Village {
             inverseJoinColumns = @JoinColumn(name = "document_id")
     )
     private List<Document> documents;
-    @Column(name = "name")
-    private String name;
+
     public void removeDocument(Document document){
         this.documents.remove(document);
         document.getVillages().remove(this);
