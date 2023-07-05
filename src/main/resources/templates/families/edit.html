@@ -2,15 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Редактировать фималию</title>
+    <title>Редактировать семью</title>
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
+
 <form th:method="PATCH" th:action="@{/families/{id}(id=${family.getId()})}" th:object="${family}">
-    <label for="lastName">Enter lastname: </label>
+    <label for="lastName">Введите фамилию: </label>
     <input type="text" th:field="*{lastName}" id="lastName"/>
     <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Title Error</div>
+    <br/>
+    <label for="documents">Укажите документ, в котором упоминается данная семья:</label>
+    <select id="documents" name="documents" multiple="multiple">
+        <option th:each="document : ${allDocuments}" th:value="${document.id}" th:text="${document.title}"></option>
+        <!--        <div style="color:red" th:if="${#fields.hasErrors('documents')}" th:errors="*{documents}">Необходимо указать населенный пункт</div>-->
 
+    </select>
+    <br/> <br/>
+
+    <br/>
+    <label for="villages">Укажите населенный пункт, в коотрм проживала данная семья:</label>
+    <select id="villages" name="villages" multiple="multiple">
+        <option th:each="village : ${allVillages}" th:value="${village.id}" th:text="${village.name}"></option>
+        <!--        <div style="color:red" th:if="${#fields.hasErrors('villages')}" th:errors="*{villages}">Необходимо указать документ</div>-->
+
+    </select> <br/>
     <input type="submit" value="Применить"/>
 </form>
 

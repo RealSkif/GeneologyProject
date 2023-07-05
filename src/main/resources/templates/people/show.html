@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Show</title>
+    <title>Человек</title>
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
@@ -33,7 +33,7 @@
 
 
 <a th:href="@{'/people/' + ${person.getId()} + '/documents' }">Список документов</a><br/>
-<a th:href="@{'/people/' + ${person.getId()} + '/villages' }">Список деревень</a><br/>
+<a th:href="@{'/people/' + ${person.getId()} + '/villages' }">Список населенный пунктов</a><br/>
 
 
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">

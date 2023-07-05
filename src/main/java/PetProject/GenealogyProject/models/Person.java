@@ -51,5 +51,20 @@ public class Person {
     @Column(name = "socialstatus")
     private String socialStatus;
 
-
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", documents=" + documents +
+                ", villages=" + villages +
+                ", owner=" + owner +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", age=" + age +
+                ", mother=" + mother +
+                ", father=" + father +
+                ", socialStatus='" + socialStatus + '\'' +
+                '}';
+    }
 }

@@ -69,6 +69,8 @@ public class VillageController {
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
+        List<Document> documents = documentService.findAll();
+        model.addAttribute("allDocuments", documents);
         model.addAttribute("village", villageService.findOne(id));
         return "villages/edit";
     }

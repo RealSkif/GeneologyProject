@@ -2,15 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Show</title>
+    <title>Документ</title>
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
+
 <p th:text="${document.getTitle() + ', ' + document.getYear()}">VALUE</p>
-<p th:text="${'Type: ' + document.getDocumentType()}">VALUE</p>
+<p th:text="${'Тип: ' + document.getDocumentType()}">VALUE</p>
 <p th:text="${document.getId()}">VALUE</p>
 
-<a th:href="@{/documents/{id}/edit(id=${document.getId()})}" class="btn btn-primary"><i class="fa-duotone fa-files-medical">Edit</i></a>
+<a th:href="@{/documents/{id}/edit(id=${document.getId()})}"
+   class="btn btn-primary"><i class="fa-duotone fa-files-medical">Редактировать</i></a>
 
 <form th:method="DELETE" th:action="@{/documents/{id}(id=${document.getId()})}">
     <input type="submit" value="Удалить"/>

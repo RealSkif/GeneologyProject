@@ -1,8 +1,12 @@
 package PetProject.GenealogyProject.controllers;
 
 
+import PetProject.GenealogyProject.models.Document;
+import PetProject.GenealogyProject.models.Family;
 import PetProject.GenealogyProject.models.Person;
+import PetProject.GenealogyProject.models.Village;
 import PetProject.GenealogyProject.services.DocumentService;
+import PetProject.GenealogyProject.services.FamilyService;
 import PetProject.GenealogyProject.services.PersonService;
 import PetProject.GenealogyProject.services.VillageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
 import java.util.List;
 
 @Controller
@@ -18,12 +23,14 @@ public class PersonController {
     private final PersonService personService;
     private final DocumentService documentService;
     private final VillageService villageService;
+    private final FamilyService familyService;
 
     @Autowired
-    public PersonController(PersonService personService, DocumentService documentService, VillageService villageService) {
+    public PersonController(PersonService personService, DocumentService documentService, VillageService villageService, FamilyService familyService) {
         this.personService = personService;
         this.documentService = documentService;
         this.villageService = villageService;
+        this.familyService = familyService;
     }
 
     @GetMapping()
@@ -44,32 +51,53 @@ public class PersonController {
     }
 
     @GetMapping("/new")
-    public String newPerson(@ModelAttribute("person") Person person) {
+    public String newPerson(Model model) {
+        List<Document> documents = documentService.findAll();
+        List<Village> villages = villageService.findAll();
+        List<Family> families = familyService.findAll();
+
+
+        model.addAttribute("person", new Person());
+        model.addAttribute("allVillages", villages);
+        model.addAttribute("allDocuments", documents);
+        model.addAttribute("allFamilies", families);
         return "people/new";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") Person person) {
+    public String create(@ModelAttribute("person") Person person,
+                         @RequestParam("families") int familyId) {
+        person.setOwner(familyService.findOne(familyId));
         personService.save(person);
-        return "redirect:/people/index";
+        return "redirect:/people";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
+        List<Document> documents = documentService.findAll();
+        List<Village> villages = villageService.findAll();
+        List<Family> families = familyService.findAll();
+        List<Person> thisFamily = personService.findByOwner(personService.findOne(id).getOwner());
+        model.addAttribute("allVillages", villages);
+        model.addAttribute("allDocuments", documents);
+        model.addAttribute("allFamilies", families);
+        model.addAttribute("thisFamily", thisFamily);
         model.addAttribute("person", personService.findOne(id));
         return "people/edit";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id,
+                         @RequestParam("families") int familyId) {
+        person.setOwner(familyService.findOne(familyId));
         personService.update(id, person);
-        return "redirect:/people/index";
+        return "redirect:/people";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         personService.delete(id);
-        return "redirect:/people/index";
+        return "redirect:/people";
     }
 
     @GetMapping("/{id}/documents")

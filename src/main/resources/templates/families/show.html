@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Show</title>
+    <title>Семья</title>
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
-<p th:text="${'Last name: ' + family.getLastName()}">VALUE</p>
 
-<a th:href="@{/families/{id}/edit(id=${family.getId()})}">Edit</a>
+<p th:text="${'Фамилия: ' + family.getLastName()}">VALUE</p>
+
+<a th:href="@{/families/{id}/edit(id=${family.getId()})}">Редактировать</a>
 <br/>
 
 <a th:href="@{'/families/' + ${family.getId()} + '/members' }">Список членов семьи</a>

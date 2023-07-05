@@ -2,14 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Редактировать документ</title>
+    <title>Редактировать населенный пункт</title>
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
 <form th:method="PATCH" th:action="@{/villages/{id}(id=${village.getId()})}" th:object="${village}">
-    <label for="name">Enter name of village: </label>
+    <label for="name">Введите название населенного пункта: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+    <label for="documents">Укажите документ, в которм упоминается данный человек:</label>
+    <select id="documents" name="documents" multiple="multiple">
+        <option th:each="document : ${allDocuments}" th:value="${document.id}" th:text="${document.title}"></option>
+        <!--        <div style="color:red" th:if="${#fields.hasErrors('documents')}" th:errors="*{documents}">Необходимо указать населенный пункт</div>-->
+
+    </select>
+    <br/> <br/>
 
     <input type="submit" value="Применить"/>
 </form>

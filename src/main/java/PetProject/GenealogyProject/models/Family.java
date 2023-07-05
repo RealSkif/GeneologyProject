@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 @Getter
@@ -23,6 +24,7 @@ public class Family {
             inverseJoinColumns = @JoinColumn(name = "village_id")
     )
     private List<Village> villages;
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @OneToMany(mappedBy = "owner")
     private List<Person> persons;
     @Column(name = "lastname")
