@@ -1,6 +1,7 @@
 package PetProject.GenealogyProject.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class Document {
     @ManyToMany(mappedBy = "documents", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Person> persons;
     @Column(name = "title")
+    @NotEmpty(message = "Поле не должно быть пустым")
     private String title;
     @Column(name = "documenttype")
     private String documentType;

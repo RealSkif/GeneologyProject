@@ -2,9 +2,11 @@ package PetProject.GenealogyProject.controllers;
 
 import PetProject.GenealogyProject.models.Document;
 import PetProject.GenealogyProject.services.DocumentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -36,7 +38,10 @@ public class DocumentController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("document") Document document) {
+    public String create(@ModelAttribute("document") @Valid Document document,
+                         BindingResult bindingResult) {
+        if(bindingResult.hasErrors())
+            return "documents/new";
         documentService.save(document);
         return "redirect:/documents";
     }
@@ -48,7 +53,11 @@ public class DocumentController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("document") Document document, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("document") @Valid Document document,
+                         BindingResult bindingResult,
+                         @PathVariable("id") int id) {
+        if(bindingResult.hasErrors())
+            return "documents/edit";
         documentService.update(id, document);
         return "redirect:/documents";
     }
